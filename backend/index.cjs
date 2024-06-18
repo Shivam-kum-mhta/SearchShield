@@ -19,27 +19,9 @@ app.get('/api/context', async (req, res) => {
     const response = await axios.get(url);
 
     console.log(url)
+    res.status(200).json(response.data)
     console.log('Successfully response sent')
-
-    try{
-      const dom = new JSDOM(response.data);
-      const document = dom.window.document;
-  
-      const inlineStyles = Array.from(document.querySelectorAll('style')).map(style => style.textContent);
-      // Extract linked stylesheets
-    const linkedStyles = Array.from(document.querySelectorAll('link[rel="stylesheet"]')).map(link => link.href);
-
-    // Fetch linked stylesheets content
-    const linkedStylesContent = await Promise.all(linkedStyles.map(url => axios.get(url).then(res => res.data)));
-
-    // Combine all styles
-    const allStyles = [...inlineStyles, ...linkedStylesContent];
-    console.log(allStyles)
-    res.json({allStyles });
-    }catch(err){console.log(err)}
-
-
-  } catch (error) {
+   } catch (error) {
     console.log('server error')
     res.status(500).json({ error: 'Failed to fetch content' });
   }
