@@ -1,8 +1,7 @@
 import React from "react"
 import { useEffect , useState} from "react";
 
-const Home = ({  Histor, setHistor, searchInput, setSearchInput, showluv, hamberger }) => {
-
+const Home = ({ }) => {
 
 const [search, setSearch] = useState('puppies');
 const [snippet, setSnippet] = useState([])
@@ -19,9 +18,13 @@ try{
 }
 
 useEffect(()=>{
-    Access(`https://www.googleapis.com/customsearch/v1?key=AIzaSyAsTe14IE_0DlNnu5hfBW1VzVuwP_8-IAA&cx=7405aac4542ad4e53&q=${search}&searchType=image&num=10`);
 
-},[search])
+const API = process.env.REACT_APP_APIKEY="AIzaSyAsTe14IE_0DlNnu5hfBW1VzVuwP_8-IAA"
+
+
+Access(`https://www.googleapis.com/customsearch/v1?key=${API}&cx=7405aac4542ad4e53&q=${search}&searchType=image&num=10`);
+
+},[content])
 
 
 const fetchContent = async (query)=>{
@@ -41,7 +44,7 @@ return(<>
     </div>
     <div>
     {snippet.map((item)=>{   return(<div className="container" key={item.title}> {item.title}
-        <div className="img" ><img onClick={fetchContent(item.contextLink)}  src={item.image.thumbnailLink} alt="" /></div>
+        <div className="img" ><img onClick={()=>fetchContent(item.contextLink)}  src={item.image.thumbnailLink} alt="" /></div>
     </div>);  })}
 </div>
 
