@@ -18,11 +18,8 @@ try{
 }
 
 useEffect(()=>{
-
-const API = process.env.REACT_APP_APIKEY="AIzaSyAsTe14IE_0DlNnu5hfBW1VzVuwP_8-IAA"
-
-
-Access(`https://www.googleapis.com/customsearch/v1?key=${API}&cx=7405aac4542ad4e53&q=${search}&searchType=image&num=10`);
+//place your API KEY 
+Access(`https://www.googleapis.com/customsearch/v1?key=YOUR_API_KEY&cx=7405aac4542ad4e53&q=${search}&searchType=image&num=10`);
 
 },[content])
 
