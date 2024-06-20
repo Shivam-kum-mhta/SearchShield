@@ -29,7 +29,7 @@ const Searchpg=({searchkeys, setSearchkeys, Tabkey})=>{
 
 useEffect(()=>{
 //place your API KEY 
-Access(`https://www.googleapis.com/customsearch/v1?key=AIzaSyCUPYzhf-3K8YbE9-JOk-p1dMCeUtU2Yow&cx=7405aac4542ad4e53&q=${search}&num=10&searchType=Image&imgSize=large`);
+Access(`https://www.googleapis.com/customsearch/v1?key=AIzaSyBT-8W6Bp0xp4AyaC3werMQpr5otE29iQI&cx=7405aac4542ad4e53&q=${search}&num=10&searchType=Image&imgSize=large`);
     
     
 },[search]) 
