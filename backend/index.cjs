@@ -40,11 +40,23 @@ app.post('/register', async (req, res) => {
     res.status(400).json({ error: 'Error registering user' });
   }
 });
+app.get('/user-id', async (req, res) => {
+  const { email } = req.query;
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    res.status(200).json({ userId: user._id });
+  } catch (error) {
+    res.status(500).json({ error: 'Error fetching user ID' });
+  }
+});
 
 app.post('/history', async (req, res)=>{
-  const {keywords}=req.body;
+  const {userId, keywords}=req.body;
   try{
-    const newSearchHistory = new SearchHistory({keywords});
+    const newSearchHistory = new SearchHistory({userId, keywords});
     await newSearchHistory.save();
     res.status(200).json({ message: 'Search history successfully' });
     console.log(`keywords =${keywords}`)
@@ -52,6 +64,19 @@ app.post('/history', async (req, res)=>{
     res.status(402).json({error: 'Error creating search history'})}
   }
 )
+
+app.get('/history/:userId', async (req, res)=>{
+  const {userId}=req.params;
+  try {
+    const searchHistory = await SearchHistory.find({ userId }).sort({ searchedAt: -1 }); // Sort by searchedAt in descending order
+    if (!searchHistory.length) {
+      return res.status(404).json({ message: 'No search history found for this user' });
+    }
+    res.status(200).json(searchHistory);
+  } catch (error) {
+    res.status(500).json({ error: 'Error fetching search history' });
+  }
+})
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

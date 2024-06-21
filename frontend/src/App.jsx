@@ -7,21 +7,23 @@ import Nav from './components/Nav'
 import About from './components/About'
 import LoginPage from './components/Loginpg'
 import Searchpg from './components/Searchpg'
+import History from './components/History'
 function App() {
   const tabswitch={id1:[0,]}
   const [switchh, setSwitchh] = useState(tabswitch)
   const [prevTab, setPrevTab] = useState('id1')
   const [login, setLogin] = useState(false)
 
+  const [search, setSearch] = useState('');
   const router= createBrowserRouter([
     {path:"/about" ,
   element: <><Nav/><About/></>},
     {path:"/" ,
-  element: <><Nav switchh={switchh} setSwitchh={setSwitchh} prevTab={prevTab} setPrevTab={setPrevTab}/>
+  element: <><Nav switchh={switchh} setSwitchh={setSwitchh} prevTab={prevTab} setPrevTab={setPrevTab} search={search} setSearch={setSearch}/>
   <Home switchh={switchh} setSwitchh={setSwitchh} prevTab={prevTab} setPrevTab={setPrevTab}/></>},
  
   {path:"/history" ,
-  element: <><Nav  /></>},
+  element: <><Nav /><History setSearch={setSearch}/></>},
  
   ])
 

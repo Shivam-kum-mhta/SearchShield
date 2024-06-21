@@ -1,18 +1,18 @@
 import React, { useState , useEffect} from "react";
 import axios from 'axios';
-const Searchpg=({switchh, setSwitchh, prevTab, setPrevTab})=>{
+const Searchpg=({switchh, setSwitchh, prevTab, setPrevTab ,search, setSearch})=>{
 
     const [inputValue, setInputValue] = useState('');
-  const [search, setSearch] = useState('');
 
   const handleonChange = (e)=>{
     setInputValue(e.target.value);
   }
-  const handleonKeyDown=(e)=>{
+  const handleonKeyDown=async (e)=>{
     if (e.key === 'Enter')
-    setSearch(inputValue)
-  //const response=axios.post('http://localhost:5000/history', {
-   // inputValue} )
+    {setSearch(inputValue)
+    const response=await axios.post('http://localhost:5000/history', {
+    "userId":"66755c1649bdf9334de5be56", "keywords":inputValue} )
+    console.log("response: " ,response)}
   }
 
 
