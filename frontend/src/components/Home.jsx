@@ -2,30 +2,9 @@ import React from "react"
 import { useEffect , useState} from "react";
 import Context from "./Context";
 import Switch from "./Switch";
-const Home = ({ }) => {
-
-const [search, setSearch] = useState('puppies');
-const [snippet, setSnippet] = useState([])
-const [content, setContent] = useState([])
-const [context, setContext] = useState('')
-const [prevTab, setPrevTab] = useState('id1')
-const Access = async (url) => {
-try{
-    let response = await fetch(url);
-    let data= await response.json();
-    console.log(data);
-    setSnippet(data.items);
-  
-    }catch(err){console.log('Remote Server error')}
-}
+const Home = ({switchh, setSwitchh, prevTab, setPrevTab}) => {
 
 
-
-
-useEffect(()=>{
-    setSnippet()
-    },[]
-)
 
 const fetchContent = async (query)=>{
     try{
@@ -37,9 +16,6 @@ const fetchContent = async (query)=>{
   }
 }
 
-const tabswitch={id1:[0,]}
-const [switchh, setSwitchh] = useState(tabswitch)
-const [searchkeys,setSearchkeys] = useState({})
 
 const updateSwitch=(key)=>{
     switchh[prevTab][0]=1
@@ -49,14 +25,7 @@ const updateSwitch=(key)=>{
     setSwitchh(newSwitchh)
     console.log('switched to tab', key);
 }
-const addTab=()=>{
-    const newTab = `id${Object.keys(switchh).length+1}`
-    switchh[prevTab][0]=1
-    const newSwitchh = { ...switchh, [newTab]:[0,]};
-    setSwitchh(newSwitchh)
-    setPrevTab(newTab)
-    console.log('added a tab', newTab)
-}
+
 
 const deleteTab=()=>{
     console.log('deleting...')
@@ -104,7 +73,6 @@ return(<div style={{ backgroundColor:'black' }}>
     <div class="container flex mx-auto">
         <div class="sr-only peer space-x-10 flex">
             {Object.keys(switchh).map(key=>{return(<button key={key} onClick={()=>{ console.log('clicked'); updateSwitch(key)} } class="tab active px-6 py-2  m-2 my-2 rounded-full bg-blue-500 text-white focus:outline-none focus:ring-2 focus:ring-blue-300"><Switch id={key.replace('id', '')}  /></button>)})}
-            <button onClick={()=>addTab()}> NEW </button>
             <button onClick={()=>deleteTab()}> DEL </button> </div></div>
         <Context switchh={switchh} setSwitchh={setSwitchh}/>
 

@@ -1,5 +1,6 @@
 import React, { useState , useEffect} from "react";
-const Searchpg=({switchh, setSwitchh, Tabkey})=>{
+import axios from 'axios';
+const Searchpg=({switchh, setSwitchh, prevTab, setPrevTab})=>{
 
     const [inputValue, setInputValue] = useState('');
   const [search, setSearch] = useState('');
@@ -10,29 +11,37 @@ const Searchpg=({switchh, setSwitchh, Tabkey})=>{
   const handleonKeyDown=(e)=>{
     if (e.key === 'Enter')
     setSearch(inputValue)
+  //const response=axios.post('http://localhost:5000/history', {
+   // inputValue} )
   }
 
+
   const Access = async (url) => {
-    try{
+        if(search.length > 0){
         let response = await fetch(url);
         let data= await response.json();
         console.log('T',data);
         const searchkey=data.items;
-        const updatedTab = [switchh[Tabkey][0], searchkey];
-        console.log('T->S',updatedTab);
-        setSwitchh(prevState => ({
-      ...prevState,
-      [Tabkey]: updatedTab
-    }))
-    console.log('T->S', 'updated')
-        }catch(err){console.log('Remote Server error')}
+        console.log("searchkey",searchkey)
+
+        //adding a new tab
+        const newTab = `id${Object.keys(switchh).length+1}`
+        console.log("newTab",newTab)
+        switchh[prevTab][0]=1
+        const newSwitchh = { ...switchh, [newTab]:[0,searchkey]};
+        console.log("newSwitchh",newSwitchh)
+        setSwitchh(newSwitchh)
+        setPrevTab(newTab)
+        console.log('added a new tab', newTab)
+        setInputValue('')
+        }
 
     }
 
 
 useEffect(()=>{
 //place your API KEY 
-Access(`https://www.googleapis.com/customsearch/v1?key=AIzaSyAqqeklHk2ZctDvYhRoS2iV95eufketX7Q&cx=7405aac4542ad4e53&q=${search}&num=10&searchType=Image&imgSize=large`);
+Access(`https://www.googleapis.com/customsearch/v1?key=AIzaSyAVM5iaqfx2ZhsDNCeIphKUfz4Q2cbcois&cx=7405aac4542ad4e53&q=${search}&num=10&searchType=Image&imgSize=large`);
     
     
 },[search]) 
@@ -50,7 +59,8 @@ Access(`https://www.googleapis.com/customsearch/v1?key=AIzaSyAqqeklHk2ZctDvYhRoS
         onKeyDown={handleonKeyDown}
         style={{ padding: '8px', marginBottom: '16px' }} // Adding some styling
       />
-       <h1> 'SEARCH SAFE ;)' </h1></>);
+      
+       </>);
 }
 
 export default Searchpg;
