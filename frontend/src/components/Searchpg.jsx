@@ -1,5 +1,5 @@
 import React, { useState , useEffect} from "react";
-const Searchpg=({searchkeys, setSearchkeys, Tabkey})=>{
+const Searchpg=({switchh, setSwitchh, Tabkey})=>{
 
     const [inputValue, setInputValue] = useState('');
   const [search, setSearch] = useState('');
@@ -17,11 +17,14 @@ const Searchpg=({searchkeys, setSearchkeys, Tabkey})=>{
         let response = await fetch(url);
         let data= await response.json();
         console.log('T',data);
-      
-        const newsearchkey = {...searchkeys, [Tabkey]:data.items};
-        console.log('T',newsearchkey)
-        setSearchkeys(newsearchkey)
-        
+        const searchkey=data.items;
+        const updatedTab = [switchh[Tabkey][0], searchkey];
+        console.log('T->S',updatedTab);
+        setSwitchh(prevState => ({
+      ...prevState,
+      [Tabkey]: updatedTab
+    }))
+    console.log('T->S', 'updated')
         }catch(err){console.log('Remote Server error')}
 
     }
@@ -29,7 +32,7 @@ const Searchpg=({searchkeys, setSearchkeys, Tabkey})=>{
 
 useEffect(()=>{
 //place your API KEY 
-Access(`https://www.googleapis.com/customsearch/v1?key=AIzaSyBT-8W6Bp0xp4AyaC3werMQpr5otE29iQI&cx=7405aac4542ad4e53&q=${search}&num=10&searchType=Image&imgSize=large`);
+Access(`https://www.googleapis.com/customsearch/v1?key=AIzaSyAqqeklHk2ZctDvYhRoS2iV95eufketX7Q&cx=7405aac4542ad4e53&q=${search}&num=10&searchType=Image&imgSize=large`);
     
     
 },[search]) 
