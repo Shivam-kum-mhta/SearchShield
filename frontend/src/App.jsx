@@ -8,6 +8,7 @@ import About from './components/About'
 import LoginPage from './components/Loginpg'
 import Searchpg from './components/Searchpg'
 import History from './components/History'
+import Cookies from 'js-cookie';
 function App() {
   const tabswitch={id1:[0,]}
   const [switchh, setSwitchh] = useState(tabswitch)
@@ -28,7 +29,7 @@ function App() {
   ])
 
   return (<>
-  { !login ? (<>
+  { login ? (<>
   <RouterProvider router={router}>
     </RouterProvider></>) : (<LoginPage setLogin={setLogin} />) }</>
   )

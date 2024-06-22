@@ -10,8 +10,12 @@ const Searchpg=({switchh, setSwitchh, prevTab, setPrevTab ,search, setSearch})=>
   const handleonKeyDown=async (e)=>{
     if (e.key === 'Enter')
     {setSearch(inputValue)
-    const response=await axios.post('http://localhost:5000/history', {
-    "userId":"66755c1649bdf9334de5be56", "keywords":inputValue} )
+
+      const token = localStorage.getItem('token');
+      const response = await axios.post(`http://localhost:5000/savehistory`,{"keywords": inputValue}, {
+    headers: {
+        Authorization: `Bearer ${token}`,
+      }})
     console.log("response: " ,response)}
   }
 

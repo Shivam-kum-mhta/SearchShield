@@ -1,7 +1,7 @@
 // src/components/LoginPage.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
-
+import Cookies from 'js-cookie';
 const LoginPage = ({setLogin}) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -13,14 +13,17 @@ const LoginPage = ({setLogin}) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/register', {
+      const response = await axios.post('http://localhost:5000/login', {
         username,
         email,
         password,
       });
-
+        console.log("Response for loging in ", response)
       setSuccess('User registered successfully!');
       setError('');
+
+      const {token}= response.data.data;
+      localStorage.setItem('token', token);
       if(response){
         setLogin(true)
       }

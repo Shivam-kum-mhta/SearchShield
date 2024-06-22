@@ -6,14 +6,122 @@ const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 const app = express();
 const PORT = 5000;
-
-
-app.use(bodyParser.json());
-app.use(cors());
+const cookieParser = require('cookie-parser');
+const jwt = require("jsonwebtoken");
 
 const User = require('./database/models/User.cjs');
 const SearchHistory = require('./database/models/SearchHistory.cjs')
 
+const corsOptions = {
+  origin: 'http://localhost:5173', // Specify the frontend origin
+  credentials: true, // Enable credentials (cookies, etc.)
+};
+
+
+app.use(bodyParser.json());
+app.use(cors(corsOptions));
+app.use(express.json());
+app.use(cookieParser());
+
+
+// Handling post request
+app.post("/login",
+  async (req, res, next) => {
+      let { email, password } = req.body;
+
+      let existingUser;
+      try {
+          existingUser =
+              await User.findOne({ email: email });
+      } catch {
+          const error =
+              new Error(
+                  "Error! Something went wrong."
+              );
+          return next(error);
+      }
+      if (!existingUser
+          || existingUser.password
+          != password) {
+          const error =
+              Error(
+                  "Wrong details please check at once"
+              );
+          return next(error);
+      }
+      let token;
+      try {
+          //Creating jwt token
+          token = jwt.sign({userId: existingUser.id, email: existingUser.email},"secretkeyappearshere",{ expiresIn: "1h" });
+      } catch (err) {
+          console.log(err);
+          const error =
+              new Error("Error! Something went wrong.");
+          return next(error);
+      }
+
+      res.status(200).json({
+              success: true,
+              data: {
+                  userId: existingUser.id,
+                  email: existingUser.email,
+                  token: token,
+                },    });
+
+  });
+
+
+
+  app.get('/gethistory',
+   async (req, res) => {
+
+    const token = req.headers.authorization.split(' ')[1];
+    if (!token) {
+      return res.status(401).json({ message: 'No token provided' });
+    }
+        //Decoding the token
+        const decodedToken =
+            jwt.verify(token, "secretkeyappearshere");
+       if (!decodedToken) console.log("AUNTHETICATION FAILED")
+
+        const userId=decodedToken.userId
+
+        try {
+          const searchHistory = await SearchHistory.find({ userId }).sort({ searchedAt: -1 }); // Sort by searchedAt in descending order
+          if (!searchHistory.length) {
+            return res.status(404).json({ message: 'No search history found for this user' });
+          }
+          res.status(200).json(searchHistory);
+        } catch (error) {
+          res.status(500).json({ error: 'Error fetching search history' });
+        }
+    })
+
+app.post('/savehistory', async (req, res)=>{
+  const {keywords}=req.body
+  const token = req.headers.authorization.split(' ')[1];
+  if (!token) {
+    return res.status(401).json({ message: 'No token provided' });
+  }
+      //Decoding the token
+      const decodedToken =
+          jwt.verify(token, "secretkeyappearshere");
+     if (!decodedToken) console.log("AUNTHETICATION FAILED")
+
+      //retrive saved history
+      const userId = decodedToken.userId
+      try{
+        console.log("userId: "+userId+"keyword: "+keywords)
+        const newSearchHistory = new SearchHistory({userId, keywords});
+        await newSearchHistory.save();
+        console.log("Done saving keyword")
+        res.status(200).json({ message: 'Search history successfully' });
+        console.log(`keywords =${keywords}`)
+      } catch (error) {
+        res.status(402).json({error: 'Error creating search history'})}
+     
+
+})
 
 app.get('/api/context', async (req, res) => {
   const { url } = req.query;
@@ -40,43 +148,7 @@ app.post('/register', async (req, res) => {
     res.status(400).json({ error: 'Error registering user' });
   }
 });
-app.get('/user-id', async (req, res) => {
-  const { email } = req.query;
-  try {
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
-    }
-    res.status(200).json({ userId: user._id });
-  } catch (error) {
-    res.status(500).json({ error: 'Error fetching user ID' });
-  }
-});
 
-app.post('/history', async (req, res)=>{
-  const {userId, keywords}=req.body;
-  try{
-    const newSearchHistory = new SearchHistory({userId, keywords});
-    await newSearchHistory.save();
-    res.status(200).json({ message: 'Search history successfully' });
-    console.log(`keywords =${keywords}`)
-  } catch (error) {
-    res.status(402).json({error: 'Error creating search history'})}
-  }
-)
-
-app.get('/history/:userId', async (req, res)=>{
-  const {userId}=req.params;
-  try {
-    const searchHistory = await SearchHistory.find({ userId }).sort({ searchedAt: -1 }); // Sort by searchedAt in descending order
-    if (!searchHistory.length) {
-      return res.status(404).json({ message: 'No search history found for this user' });
-    }
-    res.status(200).json(searchHistory);
-  } catch (error) {
-    res.status(500).json({ error: 'Error fetching search history' });
-  }
-})
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
