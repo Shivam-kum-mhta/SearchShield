@@ -29,7 +29,7 @@ function App() {
   ])
 
   return (<>
-  { login ? (<>
+  { login && localStorage.getItem('token') ? (<>
   <RouterProvider router={router}>
     </RouterProvider></>) : (<LoginPage setLogin={setLogin} />) }</>
   )

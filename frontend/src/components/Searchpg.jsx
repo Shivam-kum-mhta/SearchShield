@@ -12,7 +12,7 @@ const Searchpg=({switchh, setSwitchh, prevTab, setPrevTab ,search, setSearch})=>
     {setSearch(inputValue)
 
       const token = localStorage.getItem('token');
-      const response = await axios.post(`http://localhost:5000/savehistory`,{"keywords": inputValue}, {
+      const response = await axios.post(`http://localhost:5000/savehistory`,{ "keywords": inputValue}, {
     headers: {
         Authorization: `Bearer ${token}`,
       }})
@@ -21,7 +21,7 @@ const Searchpg=({switchh, setSwitchh, prevTab, setPrevTab ,search, setSearch})=>
 
 
   const Access = async (url) => {
-        if(search.length > 0){
+        if(search){
         let response = await fetch(url);
         let data= await response.json();
         console.log('T',data);
@@ -38,6 +38,7 @@ const Searchpg=({switchh, setSwitchh, prevTab, setPrevTab ,search, setSearch})=>
         setPrevTab(newTab)
         console.log('added a new tab', newTab)
         setInputValue('')
+        setSearch('')
         }
 
     }
