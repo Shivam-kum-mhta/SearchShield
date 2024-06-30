@@ -70,6 +70,18 @@ app.post("/login",
 
   });
 
+  
+app.post('/register', async (req, res) => {
+  const { username, email, password } = req.body;
+  try {
+    const newUser = new User({ username, email, password });
+    await newUser.save();
+    res.status(201).json({ message: 'User registered successfully' });
+    console.log(`${username, email, password} is registered`)
+  } catch (error) {
+    res.status(400).json({ error: 'Error registering user' });
+  }
+});
 
 
   app.get('/gethistory',
@@ -137,17 +149,6 @@ app.get('/api/context', async (req, res) => {
   }
 });
 
-app.post('/register', async (req, res) => {
-  const { username, email, password } = req.body;
-  try {
-    const newUser = new User({ username, email, password });
-    await newUser.save();
-    res.status(201).json({ message: 'User registered successfully' });
-    console.log(`${username, email, password} is registered`)
-  } catch (error) {
-    res.status(400).json({ error: 'Error registering user' });
-  }
-});
 
 
 app.listen(PORT, () => {

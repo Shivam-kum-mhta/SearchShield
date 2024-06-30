@@ -25,14 +25,14 @@ const Searchpg=({switchh, setSwitchh, prevTab, setPrevTab ,search, setSearch})=>
         let response = await fetch(url);
         let data= await response.json();
         console.log('T',data);
-        const searchkey=data.items;
+        const searchkey=data;
         console.log("searchkey",searchkey)
 
         //adding a new tab
         const newTab = `id${Object.keys(switchh).length+1}`
         console.log("newTab",newTab)
         switchh[prevTab][0]=1
-        const newSwitchh = { ...switchh, [newTab]:[0,searchkey]};
+        const newSwitchh = { ...switchh, [newTab]:[0,searchkey,search]};
         console.log("newSwitchh",newSwitchh)
         setSwitchh(newSwitchh)
         setPrevTab(newTab)

@@ -1,5 +1,4 @@
 import React from "react"
-import { useEffect , useState} from "react";
 import Context from "./Context";
 import Switch from "./Switch";
 const Home = ({switchh, setSwitchh, prevTab, setPrevTab}) => {
@@ -70,9 +69,10 @@ const deleteTab=()=>{
 
 return(<div style={{ backgroundColor:'black' }}>
 
-    <div class="container flex mx-auto">
-        <div class="sr-only peer space-x-10 flex">
-            {Object.keys(switchh).map(key=>{return(<button key={key} onClick={()=>{ console.log('clicked'); updateSwitch(key)} } class="tab active px-6 py-2  m-2 my-2 rounded-full bg-blue-500 text-white focus:outline-none focus:ring-2 focus:ring-blue-300"><Switch id={key.replace('id', '')}  /></button>)})}
+    <div className="container flex mx-auto">
+        <div className="sr-only peer space-x-10 flex">
+            {Object.keys(switchh).map(key=>{return(<div key={key} onClick={()=>{ console.log('clicked'); updateSwitch(key)} } class="tab active px-6 py-2  m-2 my-2 rounded-full bg-blue-500 text-white focus:outline-none focus:ring-2 focus:ring-blue-300">
+            <Switch searchkey={switchh[key][2]}  /></div>)})}
             <button onClick={()=>deleteTab()}> DEL </button> </div></div>
         <Context switchh={switchh} setSwitchh={setSwitchh}/>
 
