@@ -1,5 +1,6 @@
-import React, { useState , useEffect} from "react";
+import { useState , useEffect} from "react";
 import axios from 'axios';
+import PropTypes from 'prop-types';
 const Searchpg=({switchh, setSwitchh, prevTab, setPrevTab ,search, setSearch})=>{
 
     const [inputValue, setInputValue] = useState('');
@@ -24,8 +25,8 @@ const Searchpg=({switchh, setSwitchh, prevTab, setPrevTab ,search, setSearch})=>
         if(search){
         let response = await fetch(url);
         let data= await response.json();
-        console.log('T',data);
-        const searchkey=data;
+        console.log('T',data.items);
+        const searchkey=data.items;
         console.log("searchkey",searchkey)
 
         //adding a new tab
@@ -36,7 +37,7 @@ const Searchpg=({switchh, setSwitchh, prevTab, setPrevTab ,search, setSearch})=>
         console.log("newSwitchh",newSwitchh)
         setSwitchh(newSwitchh)
         setPrevTab(newTab)
-        console.log('added a new tab', newTab)
+        console.log('added a new tab', newTab ,"corresponding search is ",switchh)
         setInputValue('')
         setSearch('')
         }
@@ -46,7 +47,7 @@ const Searchpg=({switchh, setSwitchh, prevTab, setPrevTab ,search, setSearch})=>
 
 useEffect(()=>{
 //place your API KEY 
-Access(`https://www.googleapis.com/customsearch/v1?key=AIzaSyAVM5iaqfx2ZhsDNCeIphKUfz4Q2cbcois&cx=7405aac4542ad4e53&q=${search}&num=10&searchType=Image&imgSize=large`);
+Access(`https://www.googleapis.com/customsearch/v1?key=AIzaSyAqqeklHk2ZctDvYhRoS2iV95eufketX7Q&cx=7405aac4542ad4e53&q=${search}&num=10&searchType=Image&imgSize=large`);
     
     
 },[search]) 
@@ -66,6 +67,18 @@ Access(`https://www.googleapis.com/customsearch/v1?key=AIzaSyAVM5iaqfx2ZhsDNCeIp
       />
       
        </>);
+}
+
+Searchpg.propTypes = {
+  // Define prop types here
+  switchh: PropTypes.string.isRequired,
+  prevTab: PropTypes.number,
+  setPrevTab: PropTypes.number,
+  setSwitchh: PropTypes.string.isRequired,
+  search: PropTypes.string.isRequired,
+  setSearch: PropTypes.string.isRequired,
+  // Add more as needed
+
 }
 
 export default Searchpg;
