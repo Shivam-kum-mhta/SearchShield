@@ -47,7 +47,7 @@ const Searchpg=({switchh, setSwitchh, prevTab, setPrevTab ,search, setSearch})=>
 
 useEffect(()=>{
 //place your API KEY 
-Access(`https://www.googleapis.com/customsearch/v1?key=AIzaSyAqqeklHk2ZctDvYhRoS2iV95eufketX7Q&cx=7405aac4542ad4e53&q=${search}&num=10&searchType=Image&imgSize=large`);
+Access(`https://www.googleapis.com/customsearch/v1?key=AIzaSyATMFmEeoCJVDXJMy1hVPXQeSvV-TVd5bA&cx=7405aac4542ad4e53&q=${search}&num=10&searchType=Image&imgSize=large&start=1`);
     
     
 },[search]) 

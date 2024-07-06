@@ -1,10 +1,11 @@
 // import React, { useState } from "react";
 import PropTypes from 'prop-types';
 import Tab from "./Tab"
+import './Home.css';
 const Context =({switchh, setSwitchh})=>{
 
 
-    return(<>       
+    return(<div className='home-scroll-container'>       
     {Object.keys(switchh).map((key,value)=>{
         console.log("key and its value", key,switchh[key], value[0])
         if (!switchh[key][0]) {
@@ -13,7 +14,7 @@ const Context =({switchh, setSwitchh})=>{
       }
       return null;
     })}
-    </>
+    </div>
 
 )
 }
