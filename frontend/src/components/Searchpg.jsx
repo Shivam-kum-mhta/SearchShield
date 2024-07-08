@@ -57,7 +57,7 @@ Access(`https://www.googleapis.com/customsearch/v1?key=AIzaSyATMFmEeoCJVDXJMy1hV
 
 
 
-    return(<><input
+    return(<><input className="p-[4px] pl-[20px] mb-px rounded-[25px] w-[35vw] bg-transparent border-[#ffffff] border-[thin] text-[#54ff03]"
         type="text"
         placeholder="Search"
         value={inputValue}

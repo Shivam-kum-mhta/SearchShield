@@ -1,13 +1,20 @@
 /* src/App.css */
+
+.tab{
+  background-color: rgba(14, 44, 44, 0.98);
+  border-left: honeydew;
+  border-left-width:2px ;
+}
 .app {
   font-family: Arial, sans-serif;
   height: 100vh;
   overflow: hidden;
-  /* background-image: url('./assets/bg.jpg'); Adjust the path to your image */
+  background-image: url('./assets/bg.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
 }
+
 
 .app-header {
   background-color: rgba(0, 0, 0, 0.5);
@@ -22,6 +29,6 @@
 
 .app-container {
   height: 100vh;
-  padding-top: 6vh; /* Adjust based on header height */
+  padding-top: 6px; /* Adjust based on header height */
   overflow: hidden; /* Prevents scrolling in the main container */
 }
