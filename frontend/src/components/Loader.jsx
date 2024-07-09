@@ -28,7 +28,7 @@ const Loader = ({ isLoading }) => {
   return (
     isLoading && (<div  className="pl-[20px] overflow-hidden mb-px rounded-[25px] w-[35vw] h-[33px] bg-transparent border-[#ffffff] border-[thin] text-[#54ff03]">
 <input className="w-[35vw] bg-transparent border-[#ffffff] border-[thin] text-[#54ff03]"
- placeholder='   Loading------>'
+ placeholder='   Loading...'
  color='white'
     style={{
         width: `${progress}%`,

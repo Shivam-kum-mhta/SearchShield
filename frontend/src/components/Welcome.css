@@ -1,0 +1,74 @@
+/* Welcome.css */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #000; /* Dark background for sci-fi feel */
+    color: #54ff03; /* Green color to give a sci-fi look */
+  }
+  
+  .welcome-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 64vw;
+    height: 90%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .title {
+    font-size: 3em;
+    margin: 0;
+    text-transform: uppercase;
+    /* text-shadow: 0 0 10px #ffffff62, 0 0 20px #8cd5e5cf;  */
+  }
+  
+  .subtitle {
+    font-size: 1.5em;
+    margin: 0;
+    color: #add8e6; 
+    /* text-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff; White shadow */
+  }
+  
+  .description {
+    font-size: 1em;
+    margin: 20px 0;
+    max-width: 600px;
+    color: #add8e6; 
+    /* text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff; White shadow */
+  }
+  
+  .shield-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .shield {
+    position: absolute;
+    font-size: 2em;
+    animation: float 5s infinite;
+    opacity: 0.7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  

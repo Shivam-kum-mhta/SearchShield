@@ -57,7 +57,7 @@ const Tab = ({ Tabkey, switchh }) => {
 
   return (
     <>
-    {Array.isArray(switchh[Tabkey][1]) && switchh[Tabkey][1].length > 0 ? (
+    {Array.isArray(switchh[Tabkey][1]) && switchh[Tabkey][1].length > 0 ? (<>
       <div className='mt-[24px] ml-[2vw] w-[65vw] flex'>
         <div className='flex flex-col w-1/2 gap-[8vh]'>
           {firstHalf.map((item) => (
@@ -94,16 +94,16 @@ const Tab = ({ Tabkey, switchh }) => {
               <button onClick={()=>{console.log(item.image.contextLink); handleiframe(item.image.contextLink) ; }}> Know More</button> */}
             </div>
           ))}
-        </div>
-      </div>
+        </div> </div>
+        <div ><button onClick={handleLoadMore} disabled={isFetching} style={{ marginBottom: '100px', padding: '10px 20px', backgroundColor: '#333', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+      {isFetching ? 'Loading...' : 'Load More'}
+    </button></div>
+     </>
     ) : (
       <Welcome />
     )}
     <div>
     <FullScreenComponent iframe={iframe}/></div>
-    <div className="flex items-center"><button onClick={handleLoadMore} disabled={isFetching} style={{ marginBottom: '100px', padding: '10px 20px', backgroundColor: '#333', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
-      {isFetching ? 'Loading...' : 'Load More'}
-    </button></div>
   </>
   );
 };

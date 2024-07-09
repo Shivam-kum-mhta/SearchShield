@@ -5,7 +5,7 @@ const bodyParser=require('body-parser');
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 const app = express();
-const PORT = 5000;
+const PORT = 3000;
 const cookieParser = require('cookie-parser');
 const jwt = require("jsonwebtoken");
 
@@ -33,32 +33,27 @@ app.post("/login",
       try {
           existingUser =
               await User.findOne({ email: email });
-      } catch {
-          const error =
-              new Error(
-                  "Error! Something went wrong."
-              );
-          return next(error);
-      }
+      } catch (err) {
+        res.status(401).json({message:'No user found try signup'})
+        return
+        }
+    
       if (!existingUser
           || existingUser.password
           != password) {
-          const error =
-              Error(
-                  "Wrong details please check at once"
-              );
-          return next(error);
-      }
+              res.status(402).json({message:'Wrong credentials please check'})
+              return
+              }
+      
       let token;
       try {
           //Creating jwt token
-          token = jwt.sign({userId: existingUser.id, email: existingUser.email},"secretkeyappearshere",{ expiresIn: "1h" });
+          token = jwt.sign({userId: existingUser.id, email: existingUser.email},"mysecretcode",{ expiresIn: "1h" });
       } catch (err) {
-          console.log(err);
-          const error =
-              new Error("Error! Something went wrong.");
-          return next(error);
-      }
+        res.status(403).json({message:'Cant create token, server busy'})
+        return
+        }
+      
 
       res.status(200).json({
               success: true,
@@ -71,17 +66,46 @@ app.post("/login",
   });
 
   
-app.post('/register', async (req, res) => {
-  const { username, email, password } = req.body;
-  try {
-    const newUser = new User({ username, email, password });
-    await newUser.save();
-    res.status(201).json({ message: 'User registered successfully' });
-    console.log(`${username, email, password} is registered`)
-  } catch (error) {
-    res.status(400).json({ error: 'Error registering user' });
-  }
-});
+  app.post('/signup', async (req, res,next) => {
+    const { username, email, password } = req.body;
+    console.log(req.body);
+    try {
+      const newUser = new User({ username, email, password });
+      await newUser.save();
+      console.log(`${username, email, password} is registered`)
+    } catch (err) {
+      res.status(401).json({message:'Username or email already exists'})
+      return
+      }
+    
+  
+      let findnewUser;
+      try {
+          findnewUser =
+              await User.findOne({ email: email });
+      } catch (err) {
+        res.status(402).json({message:'Try registering again'})
+        return
+        }
+  
+      let token;
+                try {
+                      //Creating jwt token
+                      token = jwt.sign({userId: findnewUser.id, email: findnewUser.email},"mysecretcode",{ expiresIn: "1h" });
+                  } catch (err) {
+                  res.status(403).json({message:'Cant create token, server busy'})
+                  return
+                  }
+  
+      res.status(201).json({
+        success: true,
+        data: {
+            userId: findnewUser.id,
+            email: findnewUser.email,
+            token: token,
+          }, });
+  
+        })
 
 
   app.get('/gethistory',
@@ -93,7 +117,7 @@ app.post('/register', async (req, res) => {
     }
         //Decoding the token
         const decodedToken =
-            jwt.verify(token, "secretkeyappearshere");
+            jwt.verify(token, "mysecretcode");
        if (!decodedToken) console.log("AUNTHETICATION FAILED")
 
         const userId=decodedToken.userId
@@ -117,7 +141,7 @@ app.post('/savehistory', async (req, res)=>{
   }
       //Decoding the token
       const decodedToken =
-          jwt.verify(token, "secretkeyappearshere");
+          jwt.verify(token, "mysecretcode");
      if (!decodedToken) console.log("AUNTHETICATION FAILED")
 
       //retrive saved history
