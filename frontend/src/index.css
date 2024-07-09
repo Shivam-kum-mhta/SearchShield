@@ -2,3 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+/* For all scrollbars */
+::-webkit-scrollbar {
+    width: 10px; /* Width of the entire scrollbar */
+    height: 0.5px; /* Height of the horizontal scrollbar */
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #000000bd; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #ffffff94; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+/* For specific element */
+.your-element-class {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.your-element-class::-webkit-scrollbar {
+    width: 2px;
+    height: 4px;
+}
+
+.your-element-class::-webkit-scrollbar-track {
+    background: #000000c6;
+}
+
+.your-element-class::-webkit-scrollbar-thumb {
+    background: #888;
+
+}
+
+.your-element-class::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

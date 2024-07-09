@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import './Home.css'
 import Sidebar from "./Sidebar";
 import { useRef } from "react";
-const Home = ({switchh, setSwitchh, prevTab, setPrevTab}) => {
+import closealltab from '../assets/closealltab.png'
+const Home = ({switchh, setSwitchh, prevTab, setPrevTab, setSearch}) => {
 
 
 // const fetchContent = async (query)=>{
@@ -123,7 +124,7 @@ const updatedeleteTab=(key)=>{
 
 return(
     <div ref={componentRef} className="h-full ">
-          <div className="container flex mx-auto ">
+          <div className="container flex mx-auto overflow-auto;">
   {Object.keys(switchh).map(key=>{return(<div key={key} className='flex [border-left-color:white] border-l-[thin]' style={{    backgroundColor:'black'}}>
          <div key={key} onClick={()=>{ console.log('clicked'); updateSwitch(key)} } style={{       backgroundColor: 'rgb(14 ,44, 44 / 98%)'}} className="tab flex cursor-pointer active overflow-hidden overflow-ellipsis whitespace-nowrap px-4 pt-1 h-[4.75vh] w-[8vw] text-[small]
  text-white focus:outline-none focus:ring-2 focus:ring-blue-300"> <Switch searchkey={switchh[key][2]}  /></div> 
@@ -136,10 +137,10 @@ return(
       >
         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
       </svg>
-   </div>)})}</div> 
+   </div>)})}<div><img className='filter invert-[100%] w-[24px] cursor-pointer' onClick={()=>{setSwitchh({ id1: [0] }); setPrevTab('id1')}} src={closealltab} alt="" /></div></div> 
    <div className="h-[2px] bg-white"></div>
    <div className="h-full flex overflow-y-auto box-border" >
-        <Sidebar enterFullScreen={enterFullScreen} exitFullScreen={exitFullScreen}/>
+        <Sidebar enterFullScreen={enterFullScreen} exitFullScreen={exitFullScreen} setSearch={setSearch}/>
   <div className="relative w-[93vw] h-[92%] bg-[linear-gradient(to_bottom,_#00000061,_#020000cf)] ">
    
 
@@ -158,6 +159,7 @@ Home.propTypes = {
   prevTab: PropTypes.string.isRequired,
   setPrevTab: PropTypes.string.isRequired,
   setSwitchh: PropTypes.string.isRequired,
+  setSearch: PropTypes.string.isRequired,
   // Add more as needed
 }
 

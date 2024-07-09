@@ -1,18 +1,49 @@
-import { useState,useEffect,useCallback } from "react";
+import { useState,useEffect,useCallback,useRef } from "react";
 import Historylogo from "../assets/History.png"
 import fullscreenicon from "../assets/full-screen-icon.png"
 import existfullscreenicon from "../assets/exit-full-screen.webp"
 import PropTypes from 'prop-types';
-
-const Sidebar=({enterFullScreen, exitFullScreen})=>{
+import History from './History';
+import usericon from '../assets/usericon.png'
+import savedicon from '../assets/savedicon.png'
+import settingsicon from '../assets/settingsicon.png'
+const Sidebar=({enterFullScreen, exitFullScreen, setSearch})=>{
+    const [sidebaroption , setSidebarOption] = useState(null)
+    // const panelRef = useRef(null);
 
     const [fullscreen , setFullScreen]=useState(1);
     const isFull = useCallback(() => {setFullScreen(1)},[setFullScreen])
     useEffect(() => {isFull},[fullscreen])
-    return(<div className="w-[7vw] h-[90%] pt-[20px] bg-[linear-gradient(to_bottom,_#00000061,_#020000cf)]  flex [flex-flow:column] items-center gap-[15px] mr-[7px] mt-[7px] border-l-[white] border-r"> 
-   {fullscreen? (<div><img onClick={()=>{enterFullScreen(); setFullScreen(0)}} className='filter invert-[100%] w-[35px]' src={fullscreenicon} alt="" /></div>):(<div><img onClick={()=>{exitFullScreen(); setFullScreen(1)}} className='filter invert-[100%] w-[35px] h-[35px]' src={existfullscreenicon} alt="" /></div> )}
-    <div><img className='filter invert-[100%] w-[35px]' src={Historylogo} alt="" /></div>
-    <div><img className='filter invert-[100%] w-[35px]' src={Historylogo} alt="" /></div>
+    return(<div className=" relative w-[7vw] h-[90%] pt-[20px] bg-[linear-gradient(to_bottom,_#00000061,_#020000cf)]  flex [flex-flow:column] items-center gap-[15px] mr-[7px] mt-[7px] border-l-[white] border-r"> 
+   {fullscreen? (<div><img onClick={()=>{enterFullScreen(); setFullScreen(0)}} className='filter invert-[100%] w-[35px] cursor-pointer' src={fullscreenicon} alt="" /></div>):(<div><img onClick={()=>{exitFullScreen(); setFullScreen(1)}} className='filter invert-[100%] w-[35px] h-[35px]' src={existfullscreenicon} alt="" /></div> )}
+    <div><img onClick={()=>{setSidebarOption(2)}} className='filter invert-[100%] w-[35px] cursor-pointer' src={usericon} alt="" /></div>
+    <div><img onClick={()=>{setSidebarOption(3)}} className='filter invert-[100%] w-[35px] cursor-pointer' src={Historylogo} alt="" /></div>
+    <div><img onClick={()=>{setSidebarOption(4)}} className='filter invert-[100%] w-[35px] cursor-pointer' src={savedicon} alt="" /></div>
+    <div><img onClick={()=>{setSidebarOption(5)}} className='filter invert-[100%] w-[35px] cursor-pointer' src={settingsicon} alt="" /></div>
+
+   {sidebaroption==3 ? (<div  className='absolute z-1 top-[2vh] w-[66vh] h-[90%] left-[8vw] bg-white text-[white] border-l-[white] border flex' style={{zIndex:10, paddingLeft: '16px',overflow: 'auto', background: 'linear-gradient(to bottom, rgb(0 0 0 / 85%), rgb(0 0 0))' }}> <History setSearch={setSearch} setSidebarOption={setSidebarOption} />
+    <div onClick={() =>setSidebarOption(null)} className='sticky left-[68vw]'><svg
+        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" onClick={()=>{ }} className="w-8 h-8 text-red-500 cursor-pointer " 
+      > </svg></div>
+      </div>) : null}
+   {sidebaroption==2 ? (<div  className='absolute z-1 top-[2vh] w-[66vh] h-[75vh] left-[8vw] bg-white text-[white] border-l-[white] border flex' style={{zIndex:10, paddingLeft: '16px',overflow: 'auto', background: 'linear-gradient(to bottom, rgb(0 0 0 / 85%), rgb(0 0 0))' }}> 
+    <div onClick={() =>setSidebarOption(null)} className='sticky left-[68vw]'><svg
+        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" onClick={()=>{ }} className="w-8 h-8 text-red-500 cursor-pointer " 
+      > </svg></div>
+      </div>) : null}
+   {sidebaroption==4 ? (<div  className='absolute z-1 top-[2vh] w-[66vh] h-[75vh] left-[8vw] bg-white text-[white] border-l-[white] border flex' style={{zIndex:10, paddingLeft: '16px',overflow: 'auto', background: 'linear-gradient(to bottom, rgb(0 0 0 / 85%), rgb(0 0 0))' }}> <div>Saved Images Appears Here</div>
+    <div onClick={() =>setSidebarOption(null)} className='sticky left-[68vw]'><svg
+        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" onClick={()=>{ }} className="w-8 h-8 text-red-500 cursor-pointer " 
+      > </svg></div>
+      </div>) : null}
+   {sidebaroption==5 ? (<div  className='absolute z-1 top-[2vh] w-[66vh] h-[75vh] left-[8vw] bg-white text-[white] border-l-[white] border flex' style={{zIndex:10, paddingLeft: '16px',overflow: 'auto', background: 'linear-gradient(to bottom, rgb(0 0 0 / 85%), rgb(0 0 0))' }}> <div>Settings Appears Here</div>
+    <div onClick={() =>setSidebarOption(null)} className='sticky left-[68vw]'><svg
+        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" onClick={()=>{ }} className="w-8 h-8 text-red-500 cursor-pointer " 
+      > </svg></div>
+      </div>) : null}
+
+
+    
     </div>)
 }
 export default Sidebar
@@ -21,4 +52,5 @@ Sidebar.propTypes = {
     // Define prop types here
     enterFullScreen: PropTypes.func.isRequired,
     exitFullScreen: PropTypes.func.isRequired,
+   setSearch: PropTypes.func.isRequired,
 }

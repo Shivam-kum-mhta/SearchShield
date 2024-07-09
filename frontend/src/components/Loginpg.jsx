@@ -9,17 +9,17 @@ const LoginPage = ({setLogin}) => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
-  const handleRegister = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5000/login', {
+      const response = await axios.post('http://localhost:3000/login', {
         username,
         email,
         password,
       });
         console.log("Response for loging in ", response)
-      setSuccess('User registered successfully!');
+      setSuccess('User Logined successfully!');
       setError('');
 
       const {token}= response.data.data;
@@ -28,17 +28,17 @@ const LoginPage = ({setLogin}) => {
         setLogin(true)
       }
     } catch (err) {
-      setError('Error registering user');
+      setError('Error Loging in user');
       setSuccess('');
     }
   };
 
   return (
     <div className="login-page">
-      <h2>Register</h2>
+      <h2>Login</h2>
       {error && <div className="error-message">{error}</div>}
       {success && <div className="success-message">{success}</div>}
-      <form onSubmit={handleRegister}>
+      <form onSubmit={handleLogin}>
         <div className="form-group">
           <label htmlFor="username">Username:</label>
           <input
@@ -69,7 +69,7 @@ const LoginPage = ({setLogin}) => {
             required
           />
         </div>
-        <button type="submit">Register</button>
+        <button type="submit">Login</button>
       </form>
     </div>
   );

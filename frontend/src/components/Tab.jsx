@@ -12,7 +12,7 @@ const Tab = ({ Tabkey, switchh }) => {
     setIsFetching(true);
     try {
       const response = await fetch(
-        `https://www.googleapis.com/customsearch/v1?key=AIzaSyATMFmEeoCJVDXJMy1hVPXQeSvV-TVd5bA&cx=7405aac4542ad4e53&q=${search}&num=10&searchType=Image&imgSize=large&start=${start}`
+        `https://www.googleapis.com/customsearch/v1?key=AIzaSyAqqeklHk2ZctDvYhRoS2iV95eufketX7Q&cx=7405aac4542ad4e53&q=${search}&num=10&searchType=Image&imgSize=large&start=${start}`
       );
       const data = await response.json();
       if (data.items) {
@@ -101,7 +101,7 @@ const Tab = ({ Tabkey, switchh }) => {
     )}
     <div>
     <FullScreenComponent iframe={iframe}/></div>
-    <div className="flex items-center"><button onClick={handleLoadMore} disabled={isFetching} style={{ marginBottom: '37px', padding: '10px 20px', backgroundColor: '#333', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
+    <div className="flex items-center"><button onClick={handleLoadMore} disabled={isFetching} style={{ marginBottom: '100px', padding: '10px 20px', backgroundColor: '#333', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
       {isFetching ? 'Loading...' : 'Load More'}
     </button></div>
   </>
