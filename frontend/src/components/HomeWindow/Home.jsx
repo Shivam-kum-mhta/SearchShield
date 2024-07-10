@@ -126,8 +126,8 @@ return(
     <div ref={componentRef} className="h-full ">
           <div className="container flex mx-auto overflow-auto;">
   {Object.keys(switchh).map(key=>{return(<div key={key} className='flex [border-left-color:white] border-l-[thin]' style={{    backgroundColor:'black'}}>
-         <div key={key} onClick={()=>{ console.log('clicked'); updateSwitch(key)} } style={{       backgroundColor: 'rgb(14 ,44, 44 / 98%)'}} className="tab flex cursor-pointer active overflow-hidden overflow-ellipsis whitespace-nowrap px-4 pt-1 h-[4.75vh] w-[8vw] text-[small]
- text-white focus:outline-none focus:ring-2 focus:ring-blue-300"> 
+         <div key={key} onClick={()=>{ console.log('clicked'); updateSwitch(key)} } style={{       }} className={`tab flex cursor-pointer active overflow-hidden overflow-ellipsis whitespace-nowrap px-4 pt-1 h-[4.75vh] max-w-[12vw] text-[small]
+ text-white ${prevTab!==key? 'bg-[rgb(14_,44,_44_/_98%)]' : 'bg-black' }`}> 
  <Switch searchkey={switchh[key][2]}  /></div> 
                   <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -147,7 +147,7 @@ return(
 
       <div className="fixed l-[6vw] bg-black w-[65vw] flex">
      </div>
-      <Context switchh={switchh} setSwitchh={setSwitchh} prevTab={prevTab}/>
+      <Context switchh={switchh} setSwitchh={setSwitchh} />
 </div>
 </div>
 </div>

@@ -2,7 +2,7 @@
 import PropTypes from 'prop-types';
 import Tab from "./Tab"
 import './Home.css';
-const Context =({switchh, setSwitchh, prevTab})=>{
+const Context =({switchh, setSwitchh})=>{
 
 
     return(<div className='home-scroll-container'>       
@@ -10,7 +10,7 @@ const Context =({switchh, setSwitchh, prevTab})=>{
         console.log("key and its value", key,switchh[key], value[0])
         if (!switchh[key][0]) {
             console.log('current tab', key)
-        return <Tab key={key} Tabkey={key} switchh={switchh} setSwitchh={setSwitchh} prevtab={prevTab} />;
+        return <Tab key={key} Tabkey={key} switchh={switchh} setSwitchh={setSwitchh}  />;
       }
       return null;
     })}

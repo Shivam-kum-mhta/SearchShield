@@ -8,7 +8,8 @@ const Tab = ({ Tabkey, switchh, preTab}) => {
   const [startIndex, setStartIndex] = useState(1);
   const [isFetching, setIsFetching] = useState(false);
   const [iframe, setIframe] = useState('')
-  
+  const [firstHalf, setFirstHalf] = useState([]);
+  const [secondHalf, setSecondHalf] = useState([]);
   const fetchResults = async (search, start) => {
     console.log(`Fetching results for ${search} starting from index ${start}`);
     setIsFetching(true);
@@ -20,10 +21,12 @@ const Tab = ({ Tabkey, switchh, preTab}) => {
         `https://www.googleapis.com/customsearch/v1?key=${process.env.REACT_APP_GOOGLE_CUSTOM_SEARCH_API_KEY}&cx=${process.env.REACT_APP_GOOGLE_CUSTOM_SEARCH_CX_ID}&q=${search}&num=10&searchType=Image&imgSize=large&start=${start}`
       );
       const data = await response.json();
-      if (data.items) {
-        setResults((prevResults) => [...prevResults, ...data.items]);
-        
-          } else {
+       if (data.items) {
+        const newFirstHalf = data.items.slice(0, 5);
+        const newSecondHalf = data.items.slice(5);
+        setFirstHalf(prev => [...prev, ...newFirstHalf]);
+        setSecondHalf(prev => [...prev, ...newSecondHalf])
+        } else {
         console.error('No items found in response');
       }
       setIsFetching(false);
@@ -34,7 +37,7 @@ const Tab = ({ Tabkey, switchh, preTab}) => {
   };
 
   const Access = useCallback(() => {
-    if (switchh[Tabkey][2]) {
+    if (!switchh[Tabkey][1]) {
       fetchResults(switchh[Tabkey][2], startIndex);
     }
   }, [startIndex, switchh, Tabkey]);
@@ -55,10 +58,6 @@ const Tab = ({ Tabkey, switchh, preTab}) => {
   //   setIframe(data);
   // }
 
-
-  const halfIndex = Math.ceil(results.length / 2);
-  const firstHalf = results.slice(0, halfIndex);
-  const secondHalf = results.slice(halfIndex);
 
   return (
     <>

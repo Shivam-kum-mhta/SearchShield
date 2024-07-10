@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
-import SearchShield from '../assets/shield-removebg-preview.png'
-import linkedinicon from '../assets/LinkedIn.webp'
-import githubicon from '../assets/GitHub.png'
+import SearchShield from '../../assets/shield-removebg-preview.png'
+import linkedinicon from '../../assets/LinkedIn.webp'
+import githubicon from '../../assets/GitHub.png'
 import Searchpg from "./Searchpg";
 import Loader from './Loader'
 const handleOpenLink = (url) => {
