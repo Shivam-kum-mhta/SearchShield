@@ -1,32 +1,7 @@
-import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import GoogleAds from '../assets/Google-Ads.png'
-const FullScreenComponent = ({iframe}) => {
-    const componentRef = useRef(null);
+import GoogleAds from '../../assets/Google-Ads.png'
+const SidePanel = ({iframe}) => {
 
-    const enterFullScreen = () => {
-        if (componentRef.current.requestFullscreen) {
-            componentRef.current.requestFullscreen();
-        } else if (componentRef.current.mozRequestFullScreen) { // Firefox
-            componentRef.current.mozRequestFullScreen();
-        } else if (componentRef.current.webkitRequestFullscreen) { // Chrome, Safari and Opera
-            componentRef.current.webkitRequestFullscreen();
-        } else if (componentRef.current.msRequestFullscreen) { // IE/Edge
-            componentRef.current.msRequestFullscreen();
-        }
-    };
-
-    const exitFullScreen = () => {
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.mozCancelFullScreen) { // Firefox
-            document.mozCancelFullScreen();
-        } else if (document.webkitExitFullscreen) { // Chrome, Safari and Opera
-            document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) { // IE/Edge
-            document.msExitFullscreen();
-        }
-    };
 
     // const IframeComponent = ({ src }) => {
     //     return (
@@ -71,8 +46,8 @@ const FullScreenComponent = ({iframe}) => {
         </div>)}
         </> );
 };
-FullScreenComponent.propTypes = {
+SidePanel.propTypes = {
     // Define prop types here
     iframe: PropTypes.string.isRequired,}
 
-export default FullScreenComponent;
+export default SidePanel;

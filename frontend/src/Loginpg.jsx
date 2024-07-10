@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import logo from '../assets/shield-removebg-preview.png';
+import { useState } from 'react';
+import logo from './assets/shield-removebg-preview.png';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 const Login = ({setLogin}) => {
   const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState('');
@@ -15,7 +16,7 @@ const Login = ({setLogin}) => {
     e.preventDefault();
     if(isLogin) {
     try {
-      const response = await axios.post('http://localhost:3000/login', {
+      const response = await axios.post('http://localhost:3003/login', {
         email,
         password,
       });
@@ -37,7 +38,7 @@ const Login = ({setLogin}) => {
   }
   else{
     try {
-      const response = await axios.post('http://localhost:3000/signup', {
+      const response = await axios.post('http://localhost:3003/signup', {
         username,
         email,
         password,
@@ -113,5 +114,10 @@ const Login = ({setLogin}) => {
     </div>
   );
 };
+
+Login.propTypes = {
+  
+  setLogin: PropTypes.string.isRequired,
+}
 
 export default Login;

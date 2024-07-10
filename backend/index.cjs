@@ -5,7 +5,7 @@ const bodyParser=require('body-parser');
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 const app = express();
-const PORT = 3000;
+const PORT = 3003;
 const cookieParser = require('cookie-parser');
 const jwt = require("jsonwebtoken");
 

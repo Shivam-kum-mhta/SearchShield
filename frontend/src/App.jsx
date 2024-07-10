@@ -1,12 +1,11 @@
 // src/App.jsx
 import { useState } from 'react';
 import './App.css';
-import Home from './components/Home';
+import Home from './components/HomeWindow/Home';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import Nav from './components/Nav';
-import LoginPage from './components/Loginpg';
-import History from './components/History';
-import About from './components/About';
+import Nav from './components/NavWindow/Nav';
+import LoginPage from './Loginpg';
+import About from './components/NavWindow/About';
 function App() {
   const tabswitch = { id1: [0] };
   const [switchh, setSwitchh] = useState(tabswitch);

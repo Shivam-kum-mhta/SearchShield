@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './Home.css'
 import Sidebar from "./Sidebar";
 import { useRef } from "react";
-import closealltab from '../assets/closealltab.png'
+import closealltab from '../../assets/closealltab.png'
 const Home = ({switchh, setSwitchh, prevTab, setPrevTab, setSearch}) => {
 
 
@@ -127,13 +127,14 @@ return(
           <div className="container flex mx-auto overflow-auto;">
   {Object.keys(switchh).map(key=>{return(<div key={key} className='flex [border-left-color:white] border-l-[thin]' style={{    backgroundColor:'black'}}>
          <div key={key} onClick={()=>{ console.log('clicked'); updateSwitch(key)} } style={{       backgroundColor: 'rgb(14 ,44, 44 / 98%)'}} className="tab flex cursor-pointer active overflow-hidden overflow-ellipsis whitespace-nowrap px-4 pt-1 h-[4.75vh] w-[8vw] text-[small]
- text-white focus:outline-none focus:ring-2 focus:ring-blue-300"> <Switch searchkey={switchh[key][2]}  /></div> 
+ text-white focus:outline-none focus:ring-2 focus:ring-blue-300"> 
+ <Switch searchkey={switchh[key][2]}  /></div> 
                   <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
         viewBox="0 0 16 16"
         onClick={()=>{ updatedeleteTab(key);}}
-        className="w-4 h-6 text-red-500 cursor-pointer" // Example Tailwind CSS classes
+        className="w-4 h-6 text-red-500 cursor-pointer" 
       >
         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
       </svg>
@@ -141,12 +142,12 @@ return(
    <div className="h-[2px] bg-white"></div>
    <div className="h-full flex overflow-y-auto box-border" >
         <Sidebar enterFullScreen={enterFullScreen} exitFullScreen={exitFullScreen} setSearch={setSearch}/>
-  <div className="relative w-[93vw] h-[92%] bg-[linear-gradient(to_bottom,_#00000061,_#020000cf)] ">
+  <div className="relative w-[93vw] h-[92%] bg-[linear-gradient(to_bottom,_#00000061,_#020000cf)] " style={{background: 'linear-gradient(to bottom, #02122cd9, #010101)'}}>
    
 
       <div className="fixed l-[6vw] bg-black w-[65vw] flex">
      </div>
-      <Context switchh={switchh} setSwitchh={setSwitchh} />
+      <Context switchh={switchh} setSwitchh={setSwitchh} prevTab={prevTab}/>
 </div>
 </div>
 </div>

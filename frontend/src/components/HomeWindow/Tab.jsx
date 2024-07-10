@@ -1,18 +1,23 @@
+
 import Welcome from "./Welcome";
 import PropTypes from 'prop-types';
 import { useState, useEffect, useCallback } from "react";
-import FullScreenComponent from "./Fullscreen";
-const Tab = ({ Tabkey, switchh }) => {
+import SidePanel from "./SidePanel";
+const Tab = ({ Tabkey, switchh, preTab}) => {
   const [results, setResults] = useState([]);
   const [startIndex, setStartIndex] = useState(1);
   const [isFetching, setIsFetching] = useState(false);
   const [iframe, setIframe] = useState('')
+  
   const fetchResults = async (search, start) => {
     console.log(`Fetching results for ${search} starting from index ${start}`);
     setIsFetching(true);
+    
+
     try {
+
       const response = await fetch(
-        `https://www.googleapis.com/customsearch/v1?key=AIzaSyAqqeklHk2ZctDvYhRoS2iV95eufketX7Q&cx=7405aac4542ad4e53&q=${search}&num=10&searchType=Image&imgSize=large&start=${start}`
+        `https://www.googleapis.com/customsearch/v1?key=${process.env.REACT_APP_GOOGLE_CUSTOM_SEARCH_API_KEY}&cx=${process.env.REACT_APP_GOOGLE_CUSTOM_SEARCH_CX_ID}&q=${search}&num=10&searchType=Image&imgSize=large&start=${start}`
       );
       const data = await response.json();
       if (data.items) {
@@ -103,7 +108,7 @@ const Tab = ({ Tabkey, switchh }) => {
       <Welcome />
     )}
     <div>
-    <FullScreenComponent iframe={iframe}/></div>
+    <SidePanel iframe={iframe}/></div>
   </>
   );
 };
@@ -111,6 +116,7 @@ const Tab = ({ Tabkey, switchh }) => {
 Tab.propTypes = {
   switchh: PropTypes.object.isRequired,
   Tabkey: PropTypes.string.isRequired,
+  preTab: PropTypes.string.isRequired,
   setSwitchh: PropTypes.func.isRequired,
   setIframe:PropTypes.func.isRequired,
 };

@@ -18,7 +18,7 @@ const Today = new Date().toLocaleString;
     const token = localStorage.getItem('token');
     
     try {
-      const response = await axios.get(`http://localhost:3000/gethistory`,{
+      const response = await axios.get(`http://localhost:3003/gethistory`,{
         headers: {
           Authorization: `Bearer ${token}`,
         }}

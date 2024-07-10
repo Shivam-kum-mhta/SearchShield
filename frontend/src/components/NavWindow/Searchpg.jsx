@@ -2,6 +2,7 @@ import { useState , useEffect} from "react";
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import Loader from "./Loader";
+
 const Searchpg=({switchh, setSwitchh, prevTab, setPrevTab ,search, setSearch})=>{
 
     const [inputValue, setInputValue] = useState('');
@@ -15,7 +16,7 @@ const Searchpg=({switchh, setSwitchh, prevTab, setPrevTab ,search, setSearch})=>
       setSearch(inputValue)
 
       const token = localStorage.getItem('token');
-      const response = await axios.post(`http://localhost:3000/savehistory`,{ "keywords": inputValue}, {
+      const response = await axios.post(`http://localhost:3003/savehistory`,{ "keywords": inputValue}, {
     headers: {
         Authorization: `Bearer ${token}`,
       }})
@@ -50,7 +51,7 @@ const Searchpg=({switchh, setSwitchh, prevTab, setPrevTab ,search, setSearch})=>
       finally {
         setTimeout(() => {
           setIsLoading(false);
-        }, 500); // Adjust this timeout as needed
+        }, 500); 
         }
 
     }
@@ -59,7 +60,8 @@ const Searchpg=({switchh, setSwitchh, prevTab, setPrevTab ,search, setSearch})=>
 
 useEffect(()=>{
 //place your API KEY 
-Access(`https://www.googleapis.com/customsearch/v1?key=AIzaSyAqqeklHk2ZctDvYhRoS2iV95eufketX7Q&cx=7405aac4542ad4e53&q=${search}&num=10&searchType=Image&imgSize=large&start=1`);
+
+Access(`https://www.googleapis.com/customsearch/v1?key=${process.env.REACT_APP_GOOGLE_CUSTOM_SEARCH_API_KEY}&cx=${process.env.REACT_APP_GOOGLE_CUSTOM_SEARCH_CX_ID}&q=${search}&num=10&searchType=Image&imgSize=large&start=1`);
     
     
 },[search]) 

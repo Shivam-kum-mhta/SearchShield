@@ -1,6 +1,6 @@
 import React from 'react';
 import './Welcome.css';
-import shieldicon from '../assets/shield-removebg-preview.png'
+import shieldicon from '../../assets/shield-removebg-preview.png'
 const Welcome = () => {
   return (
     <div className="welcome-page">

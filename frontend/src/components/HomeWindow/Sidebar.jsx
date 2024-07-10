@@ -1,12 +1,12 @@
 import { useState,useEffect,useCallback,useRef } from "react";
-import Historylogo from "../assets/History.png"
-import fullscreenicon from "../assets/full-screen-icon.png"
-import existfullscreenicon from "../assets/exit-full-screen.webp"
+import Historylogo from "../../assets/History.png"
+import fullscreenicon from "../../assets/full-screen-icon.png"
+import existfullscreenicon from "../../assets/exit-full-screen.webp"
 import PropTypes from 'prop-types';
 import History from './History';
-import usericon from '../assets/usericon.png'
-import savedicon from '../assets/savedicon.png'
-import settingsicon from '../assets/settingsicon.png'
+import usericon from '../../assets/usericon.png'
+import savedicon from '../../assets/savedicon.png'
+import settingsicon from '../../assets/settingsicon.png'
 const Sidebar=({enterFullScreen, exitFullScreen, setSearch})=>{
     const [sidebaroption , setSidebarOption] = useState(null)
     // const panelRef = useRef(null);
@@ -14,7 +14,7 @@ const Sidebar=({enterFullScreen, exitFullScreen, setSearch})=>{
     const [fullscreen , setFullScreen]=useState(1);
     const isFull = useCallback(() => {setFullScreen(1)},[setFullScreen])
     useEffect(() => {isFull},[fullscreen])
-    return(<div className=" relative w-[7vw] h-[90%] pt-[20px] bg-[linear-gradient(to_bottom,_#00000061,_#020000cf)]  flex [flex-flow:column] items-center gap-[15px] mr-[7px] mt-[7px] border-l-[white] border-r"> 
+    return(<div className=" relative w-[7vw] h-[90%] pt-[20px] ]  flex [flex-flow:column] items-center gap-[15px] mr-[7px] mt-[7px] border-l-[white] border-r" style={{background: 'linear-gradient(rgba(2, 18, 44, 0.85), rgb(1, 1, 1))'}}> 
    {fullscreen? (<div><img onClick={()=>{enterFullScreen(); setFullScreen(0)}} className='filter invert-[100%] w-[35px] cursor-pointer' src={fullscreenicon} alt="" /></div>):(<div><img onClick={()=>{exitFullScreen(); setFullScreen(1)}} className='filter invert-[100%] w-[35px] h-[35px]' src={existfullscreenicon} alt="" /></div> )}
     <div><img onClick={()=>{setSidebarOption(2)}} className='filter invert-[100%] w-[35px] cursor-pointer' src={usericon} alt="" /></div>
     <div><img onClick={()=>{setSidebarOption(3)}} className='filter invert-[100%] w-[35px] cursor-pointer' src={Historylogo} alt="" /></div>
