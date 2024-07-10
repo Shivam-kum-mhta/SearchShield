@@ -37,7 +37,7 @@ const Tab = ({ Tabkey, switchh, preTab}) => {
   };
 
   const Access = useCallback(() => {
-    if (!switchh[Tabkey][1]) {
+    if (switchh[Tabkey][2]) {
       fetchResults(switchh[Tabkey][2], startIndex);
     }
   }, [startIndex, switchh, Tabkey]);
