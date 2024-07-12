@@ -69,26 +69,27 @@ SearchShield is a sophisticated web application designed to offer a seamless ima
 **Navigate to the project directory.**
   ```bash
   ```
-**Start the backend server using npm start or node index.cjs**
+**Open three instances of terminal**
+**TERMINAL-1 Start the backend server using npm start or node index.cjs**
    ```bash
-     cd backend
+    cd backend
    ```
    ```bash
     npm install
    ```
-    ```bash
+   ```bash
     node index.cjs
-    ```
-**Start the frontend application using npm run dev (for Vite).**
+   ```
+**TERMINAL-2 Start the frontend application using npm run dev (for Vite).**
    ```bash
      cd frontend
    ```
    ```bash
     npm install
    ```
-    ```bash
+   ```bash
     npm run dev
-    ```
+   ```
 **Set up the environment variables for the API keys, database connection, and JWT secrets.**
     ```bash
     ```
