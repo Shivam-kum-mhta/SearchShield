@@ -49,6 +49,13 @@ SearchShield is a sophisticated web application designed to offer a seamless ima
 - The application uses MongoDB as its database, with Mongoose as the ODM (Object Data Modeling) library.
 - This setup allows for efficient data storage, retrieval, and management.
 
+## Frontend
+- *React*: A popular JavaScript library for building user interfaces, providing a component-based architecture that enhances code reusability and maintainability.
+- *Tailwind CSS*: A utility-first CSS framework that enables rapid UI development by providing pre-defined utility classes.
+- *Axios*: A promise-based HTTP client for making asynchronous requests from the client-side to the backend API.
+- *Vite*: A fast build tool that supports React and modern JavaScript features, enhancing development speed and efficiency.
+
+
 ## Machine Learning Integration
 
 ### FastAPI
@@ -62,15 +69,15 @@ SearchShield is a sophisticated web application designed to offer a seamless ima
 ## Usage
 
 ### Starting the Application
-**Clone the repository from GitHub.**
+-**Clone the repository from GitHub.**
   ```bash
   https://github.com/Shivam-kum-mhta/SearchShield.git
   ```
-**Navigate to the project directory.**
+-**Navigate to the project directory.**
   ```bash
   ```
-**Open three instances of terminal**
-**TERMINAL-1 Start the backend server using npm start or node index.cjs**
+-**Open three instances of terminal**
+-**TERMINAL-1 Start the backend server**
    ```bash
     cd backend
    ```
@@ -80,7 +87,7 @@ SearchShield is a sophisticated web application designed to offer a seamless ima
    ```bash
     node index.cjs
    ```
-**TERMINAL-2 Start the frontend application using npm run dev (for Vite).**
+-**TERMINAL-2 Start the frontend application using npm run dev (for Vite).**
    ```bash
      cd frontend
    ```
@@ -90,10 +97,10 @@ SearchShield is a sophisticated web application designed to offer a seamless ima
    ```bash
     npm run dev
    ```
-**Set up the environment variables for the API keys, database connection, and JWT secrets.**
+-**Set up the environment variables for the API keys, database connection, and JWT secrets.**
     ```bash
     ```
-**Access the application through the specified local URL.**
+-**Access the application through the specified local URL.**
 
 ### Creating an Account
 1. Open the application in your browser.
