@@ -62,13 +62,35 @@ SearchShield is a sophisticated web application designed to offer a seamless ima
 ## Usage
 
 ### Starting the Application
-1. Clone the repository from GitHub.
-2. Navigate to the project directory.
-3. Install the necessary dependencies using npm install for the frontend and backend.
-4. Set up the environment variables for the API keys, database connection, and JWT secrets.
-5. Start the backend server using npm start or node index.cjs.
-6. Start the frontend application using npm run dev (for Vite).
-7. Access the application through the specified local URL.
+**Clone the repository from GitHub.**
+  ```bash
+  https://github.com/Shivam-kum-mhta/SearchShield.git
+  ```
+**Navigate to the project directory.**
+**Start the backend server using npm start or node index.cjs**
+   ```bash
+     cd backend
+   ```
+   ```bash
+    npm install
+   ```
+     ```bash
+    node index.cjs
+    ```
+**Start the frontend application using npm run dev (for Vite).**
+   ```bash
+     cd frontend
+   ```
+   ```bash
+    npm install
+   ```
+     ```bash
+    npm run dev
+    ```
+**Set up the environment variables for the API keys, database connection, and JWT secrets.**
+    ```bash
+    ```
+**Access the application through the specified local URL.**
 
 ### Creating an Account
 1. Open the application in your browser.
