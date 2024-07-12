@@ -159,17 +159,17 @@ app.post('/savehistory', async (req, res)=>{
 
 })
 
-app.get('/api/context', async (req, res) => {
-  const { url } = req.query;
-  if (!url) {return res.status(400).json({ error: 'URL is required' });}
+.post('/user', async (req, res) => {
+  console.log(req.body)
+  const { email } = req.body;
   try {
-    const response = await axios.get(url);
-    console.log(url)
-    res.status(200).json(response.data)
-    console.log('Successfully response sent')
-   } catch (error) {
-    console.log('server error')
-    res.status(500).json({ error: 'Failed to fetch content' });
+    const user = await User.findOne({ email});
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: 'Server error' });
   }
 });
 

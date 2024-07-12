@@ -5,7 +5,7 @@ import './Home.css'
 import Sidebar from "./Sidebar";
 import { useRef } from "react";
 import closealltab from '../../assets/closealltab.png'
-const Home = ({switchh, setSwitchh, prevTab, setPrevTab, setSearch}) => {
+const Home = ({switchh, setSwitchh, prevTab, setPrevTab, setSearch, email}) => {
 
 
 // const fetchContent = async (query)=>{
@@ -141,7 +141,7 @@ return(
    </div>)})}<div><img className='filter invert-[100%] w-[24px] cursor-pointer' onClick={()=>{setSwitchh({ id1: [0] }); setPrevTab('id1')}} src={closealltab} alt="" /></div></div> 
    <div className="h-[2px] bg-white"></div>
    <div className="h-full flex overflow-y-auto box-border" >
-        <Sidebar enterFullScreen={enterFullScreen} exitFullScreen={exitFullScreen} setSearch={setSearch}/>
+        <Sidebar enterFullScreen={enterFullScreen} exitFullScreen={exitFullScreen} setSearch={setSearch} email={email} />
   <div className="relative w-[93vw] h-[92%] bg-[linear-gradient(to_bottom,_#00000061,_#020000cf)] " style={{background: 'linear-gradient(to bottom, #02122cd9, #010101)'}}>
    
 

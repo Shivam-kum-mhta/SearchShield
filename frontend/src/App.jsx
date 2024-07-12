@@ -12,7 +12,7 @@ function App() {
   const [prevTab, setPrevTab] = useState('id1');
   const [login, setLogin] = useState(false);
   const [search, setSearch] = useState('');
-
+  const [email, setEmail] = useState('');
 
   const router = createBrowserRouter([
     {
@@ -20,7 +20,7 @@ function App() {
       element: (
         <div className="app-container">
           <Nav switchh={switchh} setSwitchh={setSwitchh} prevTab={prevTab} setPrevTab={setPrevTab} search={search} setSearch={setSearch} />
-          <Home switchh={switchh} setSwitchh={setSwitchh} prevTab={prevTab} setPrevTab={setPrevTab} setSearch={setSearch} />
+          <Home switchh={switchh} setSwitchh={setSwitchh} prevTab={prevTab} setPrevTab={setPrevTab} setSearch={setSearch} email={email}/>
         </div>
       )
     },
@@ -30,7 +30,7 @@ function App() {
     },
   ]);
   return (<>
-   {login ? (<LoginPage setLogin={setLogin}/>) : (<div className="app">
+   {!login ? (<LoginPage setLogin={setLogin} email={email} setEmail={setEmail}/>) : (<div className="app">
   <RouterProvider router={router}>
     </RouterProvider> 
         </div>)}

@@ -2,10 +2,9 @@ import { useState } from 'react';
 import logo from './assets/shield-removebg-preview.png';
 import axios from 'axios';
 import PropTypes from 'prop-types';
-const Login = ({setLogin}) => {
+const Login = ({setLogin, email, setEmail}) => {
   const [isLogin, setIsLogin] = useState(true);
   const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
   const handleToggle = () => {

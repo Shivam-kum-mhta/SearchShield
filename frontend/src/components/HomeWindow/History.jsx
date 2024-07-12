@@ -36,7 +36,7 @@ const Today = new Date().toLocaleString;
 
   return (
     <div>
-      <h2>Search History</h2> 
+      <h2 className='text-[x-large]'>Search History</h2> 
       <div> <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="currentColor"
