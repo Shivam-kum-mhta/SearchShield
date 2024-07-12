@@ -86,9 +86,9 @@ SearchShield is a sophisticated web application designed to offer a seamless ima
    ```bash
     npm install
    ```
-   ```bash
+    ```bash
     npm run dev
-   ```
+    ```
 **Set up the environment variables for the API keys, database connection, and JWT secrets.**
     ```bash
     ```
