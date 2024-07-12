@@ -67,6 +67,8 @@ SearchShield is a sophisticated web application designed to offer a seamless ima
   https://github.com/Shivam-kum-mhta/SearchShield.git
   ```
 **Navigate to the project directory.**
+  ```bash
+  ```
 **Start the backend server using npm start or node index.cjs**
    ```bash
      cd backend
@@ -74,7 +76,7 @@ SearchShield is a sophisticated web application designed to offer a seamless ima
    ```bash
     npm install
    ```
-     ```bash
+    ```bash
     node index.cjs
     ```
 **Start the frontend application using npm run dev (for Vite).**
@@ -84,9 +86,9 @@ SearchShield is a sophisticated web application designed to offer a seamless ima
    ```bash
     npm install
    ```
-     ```bash
+   ```bash
     npm run dev
-    ```
+   ```
 **Set up the environment variables for the API keys, database connection, and JWT secrets.**
     ```bash
     ```
