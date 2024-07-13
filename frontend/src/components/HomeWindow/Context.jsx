@@ -19,4 +19,9 @@ const Context =({switchh, setSwitchh})=>{
 )
 }
 
+Context.propTypes = {
+    // Define prop types here
+    switchh: PropTypes.object.isRequired,
+    setSwitchh: PropTypes.func.isRequired,}
+
 export default Context

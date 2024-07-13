@@ -3,8 +3,8 @@ import Welcome from "./Welcome";
 import PropTypes from 'prop-types';
 import { useState, useEffect, useCallback } from "react";
 import SidePanel from "./SidePanel";
-const Tab = ({ Tabkey, switchh, preTab}) => {
-  const [results, setResults] = useState([]);
+const Tab = ({ Tabkey, switchh}) => {
+  // const [results, setResults] = useState([]);
   const [startIndex, setStartIndex] = useState(1);
   const [isFetching, setIsFetching] = useState(false);
   const [iframe, setIframe] = useState('')

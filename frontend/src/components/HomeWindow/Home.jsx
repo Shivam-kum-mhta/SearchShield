@@ -126,7 +126,7 @@ return(
     <div ref={componentRef} className="h-full ">
           <div className="container flex mx-auto overflow-auto;">
   {Object.keys(switchh).map(key=>{return(<div key={key} className='flex [border-left-color:white] border-l-[thin]' style={{    backgroundColor:'black'}}>
-         <div key={key} onClick={()=>{ console.log('clicked'); updateSwitch(key)} } style={{       }} className={`tab flex cursor-pointer active overflow-hidden overflow-ellipsis whitespace-nowrap px-4 pt-1 h-[4.75vh] max-w-[12vw] text-[small]
+         <div key={key} onClick={()=>{ console.log('clicked'); updateSwitch(key)} } style={{       }} className={`tab flex cursor-pointer active overflow-hidden overflow-ellipsis whitespace-nowrap px-4 pt-1 h-[4.75vh] max-w-[12vw] min-w-[8vw] text-[small]
  text-white ${prevTab!==key? 'bg-[rgb(14_,44,_44_/_98%)]' : 'bg-black' }`}> 
  <Switch searchkey={switchh[key][2]}  /></div> 
                   <svg
@@ -156,7 +156,8 @@ return(
 
 Home.propTypes = {
   // Define prop types here
-  switchh: PropTypes.string.isRequired,
+  switchh: PropTypes.object.isRequired,
+  email: PropTypes.string.isRequired,
   prevTab: PropTypes.string.isRequired,
   setPrevTab: PropTypes.string.isRequired,
   setSwitchh: PropTypes.string.isRequired,

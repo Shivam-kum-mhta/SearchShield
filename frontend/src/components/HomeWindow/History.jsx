@@ -1,13 +1,13 @@
 // src/components/SearchHistory.jsx
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 import PropTypes from 'prop-types';
 const History = ({setSearch}) => {
   const [searchHistory, setSearchHistory] = useState([]);
   const navigate = useNavigate();
-const Today = new Date().toLocaleString;
+
 
   useEffect(() => {
       fetchSearchHistory();
@@ -61,8 +61,8 @@ const Today = new Date().toLocaleString;
   );
 };
 
-History.PropTypes={
-  setSearch: PropTypes.func.isRequired,
-}
+History.propTypes = {
+  // Define prop types here
+  setSearch: PropTypes.string.isRequired,}
 export default History;
 

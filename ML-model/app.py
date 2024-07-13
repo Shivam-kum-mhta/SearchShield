@@ -3,10 +3,10 @@ from pydantic import BaseModel
 from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
 import torch
 
-# Initialize FastAPI app
+
 app = FastAPI()
 
-# CORS configuration (allowing all origins, replace with actual frontend URL in production)
+
 from fastapi.middleware.cors import CORSMiddleware
 
 app.add_middleware(
@@ -17,12 +17,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Define request body model
+
 class TextInput(BaseModel):
     text: str
 
 # Load tokenizer and model
-model_path = "shivamkumaramehta/Search-Shield"  # Replace with your model path
+model_path = "shivamkumaramehta/SearchShield2.O"  # Replace with your model path
 token = "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"  # Replace with your Hugging Face token
 
 tokenizer = DistilBertTokenizer.from_pretrained(model_path)
@@ -47,7 +47,7 @@ async def predict_profanity_endpoint(input: TextInput):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-# Run the FastAPI app with Uvicorn
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="127.0.0.1", port=8000)
