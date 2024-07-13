@@ -1,5 +1,5 @@
 # SearchShield Documentation
-
+#### (guide to config .env files will be made soon)
 ## Overview
 
 SearchShield is a sophisticated web application designed to offer a seamless image search experience akin to Pinterest. It allows users to open an infinite number of tabs, utilize the "load more" feature for continuous browsing, save images, and visit the context links of images. The application is equipped with a robust profanity detection model trained on DistilBERT, boasting an F1 score of over 90%. This ensures that all search keywords are filtered for appropriateness, providing a safe and user-friendly experience.
@@ -69,15 +69,16 @@ SearchShield is a sophisticated web application designed to offer a seamless ima
 ## Usage
 
 ### Starting the Application
--**Clone the repository from GitHub.**
+---
+**Clone the repository from GitHub.**
   ```bash
   https://github.com/Shivam-kum-mhta/SearchShield.git
   ```
--**Navigate to the project directory.**
+**Navigate to the project directory.**
   ```bash
   ```
--**Open three instances of terminal**
--**TERMINAL-1 Start the backend server**
+**Open three instances of terminal**
+**TERMINAL-1 Start the backend server**
    ```bash
     cd backend
    ```
@@ -87,7 +88,7 @@ SearchShield is a sophisticated web application designed to offer a seamless ima
    ```bash
     node index.cjs
    ```
--**TERMINAL-2 Start the frontend application using npm run dev (for Vite).**
+**TERMINAL-2 Start the frontend application using npm run dev (for Vite).**
    ```bash
      cd frontend
    ```
@@ -97,11 +98,11 @@ SearchShield is a sophisticated web application designed to offer a seamless ima
    ```bash
     npm run dev
    ```
--**Set up the environment variables for the API keys, database connection, and JWT secrets.**
+**Set up the environment variables for the API keys, database connection, and JWT secrets.**
     ```bash
     ```
--**Access the application through the specified local URL.**
-
+**Access the application through the specified local URL.**
+---
 ### Creating an Account
 1. Open the application in your browser.
 2. Click on the "Sign Up" button.
