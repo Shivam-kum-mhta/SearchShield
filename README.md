@@ -1,5 +1,5 @@
 # SearchShield Documentation
-#### (guide to config .env files will be made soon)
+#### (guide to clone and setup .env files will be made soon)
 ## Overview
 
 SearchShield is a sophisticated web application designed to offer a seamless image search experience akin to Pinterest. It allows users to open an infinite number of tabs, utilize the "load more" feature for continuous browsing, save images, and visit the context links of images. The application is equipped with a robust profanity detection model trained on DistilBERT, boasting an F1 score of over 90%. This ensures that all search keywords are filtered for appropriateness, providing a safe and user-friendly experience.
