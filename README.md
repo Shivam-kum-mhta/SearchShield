@@ -1,7 +1,10 @@
 # SearchShield Documentation
 #### (guide to clone and setup .env files will be made soon)
 
-
+1. [Overview](#overview)
+2. [Features](#features)
+3. [Clone the repository](#usage)
+4. [Conclusion](#conclusion)
 ## Overview
 
 SearchShield is a sophisticated web application designed to offer a seamless image search experience akin to Pinterest. It allows users to open an infinite number of tabs, utilize the "load more" feature for continuous browsing, save images, and visit the context links of images. The application is equipped with a robust profanity detection model trained on DistilBERT, boasting an F1 score of over 90%. This ensures that all search keywords are filtered for appropriateness, providing a safe and user-friendly experience.
@@ -70,6 +73,9 @@ SearchShield is a sophisticated web application designed to offer a seamless ima
 
 ## Usage
 
+**THIS REPO IS EASY TO RUN IF FIRST AND FOREMOST IF YOU HAVE Mongodb database setup**
+Download mongodb compass, create a database
+
 ### Starting the Application
 ---
 **Clone the repository from GitHub.**
@@ -78,7 +84,17 @@ SearchShield is a sophisticated web application designed to offer a seamless ima
   ```
 **Navigate to the project directory.**
   ```bash
+    cd SearchShield
   ```
+
+**Set up the environment variables for the API keys, database connection, and JWT secrets.**
+**for the .env file in backend directory**
+1.CREATE a mongoDB compass database and paste the localhost link. Example is provided in env file in the backend directory
+**for the .env file in frontend directory**
+1.A dummy api key and cx search-engine ID is provided. YOU can also generate your own cx search-engine id here https://programmablesearchengine.google.com/controlpanel/all and api key here https://developers.google.com/custom-search/v1/overview if u want :) .
+**for the ml directory**
+"read-only" Access token for the hugging face - DISTILLBERT model is embedded already in the codebase , so no worries.
+
 **Open three instances of terminal**
 **TERMINAL-1 Start the backend server**
    ```bash
@@ -87,6 +103,10 @@ SearchShield is a sophisticated web application designed to offer a seamless ima
    ```bash
     npm install
    ```
+   ```bash
+    npm run dev
+   ```
+                  OR
    ```bash
     node index.cjs
    ```
@@ -100,17 +120,28 @@ SearchShield is a sophisticated web application designed to offer a seamless ima
    ```bash
     npm run dev
    ```
-**Set up the environment variables for the API keys, database connection, and JWT secrets.**
-    ```bash
-    ```
-**Access the application through the specified local URL.**
+**TERMINAL-3 Start the ml application**
+Ensure that you have python installed , (in my setup it was python 3.12 version)
+1. Create a virtual environment
+```bash
+  python -m venv venv
+````
+2. Install required dependencies
+```bash
+  pip install -r requirements.txt
+```
+3. Start the uvicorn server
+```
+  uvicorn main:app --reload
+```
+
+**Voila , the setup is complete**
 ---
 ### Creating an Account
 1. Open the application in your browser.
 2. Click on the "Sign Up" button.
 3. Fill in the required details and submit the form.
-4. Verify your email address if necessary.
-5. Log in using your credentials.
+
 
 ### Searching and Browsing
 1. Enter a keyword in the search bar.
@@ -118,7 +149,8 @@ SearchShield is a sophisticated web application designed to offer a seamless ima
 3. Use the "load more" button to fetch additional images.
 4. Save images to your profile by clicking the "Save" button.
 5. Visit the context link of an image by clicking the "Visit" button.
-
+6. You can sign in when visited later
+   
 ### Managing Profile and History
 1. Access your profile from the navigation menu.
 2. View your saved images and search history.
