@@ -130,6 +130,9 @@ OR
    ```
 **TERMINAL-3 Start the ml application**
 Ensure that you have python installed , (in my setup it was python 3.12 version)
+```bash
+     cd ML-model
+```
 1. Create a virtual environment
 ```bash
   python -m venv venv
