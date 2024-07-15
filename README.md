@@ -91,7 +91,7 @@ Download mongodb compass, create a database
 
 **for the .env file in backend directory** <br>
 - CREATE a mongoDB compass database and paste the localhost link. Example is provided in env file in the backend directory. <br>
-- JWT secret key is already embeded , u can change if you want. <br>
+- JWT secret key is already embeded in index.cjs, u can change if you want. <br>
 
 **for the .env file in frontend directory**
 
@@ -134,11 +134,15 @@ Ensure that you have python installed , (in my setup it was python 3.12 version)
 ```bash
   python -m venv venv
 ````
-2. Install required dependencies
+  2. Activate the virtual environment (On windows/Powershell/git bash)
+```bash
+  venv/Scripts/activate
+```
+3.
 ```bash
   pip install -r requirements.txt
 ```
-3. Start the uvicorn server
+4. Start the uvicorn server
 ```
   uvicorn app:app --reload
 ```
