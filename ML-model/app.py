@@ -22,8 +22,8 @@ class TextInput(BaseModel):
     text: str
 
 # Load tokenizer and model
-model_path = "shivamkumaramehta/SearchShield2.O"  # Replace with your model path
-token = "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"  # Replace with your Hugging Face token
+model_path = "shivamkumaramehta/Search-Shield"  # Replace with your model path
+token = "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"  # Replace with your Hugging Face token
 
 tokenizer = DistilBertTokenizer.from_pretrained(model_path)
 model = DistilBertForSequenceClassification.from_pretrained(model_path, revision="main", token=token)
@@ -36,6 +36,7 @@ def predict_profanity(text):
         outputs = model(**inputs)
     logits = outputs.logits
     predicted_class = logits.argmax().item()
+    print(predicted_class)
     return predicted_class
 
 # Endpoint to predict profanity

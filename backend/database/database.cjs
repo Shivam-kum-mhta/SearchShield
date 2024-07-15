@@ -1,11 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const PORT = process.env.PORT || 3000;
+import dotenv from 'dotenv';
+dotenv.config()
 
 try{
 // Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/SEARCHSHIELD', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_DATABASE, { useNewUrlParser: true, useUnifiedTopology: true });
 }catch (err) {console.log("mongoose error")}
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
