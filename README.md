@@ -1,9 +1,9 @@
 # SearchShield Documentation
-#### (guide to clone and setup .env files will be made soon)
+#### [to clone and setup .env files](#to-clone)
 
 1. [Overview](#overview)
 2. [Features](#features)
-3. [Clone the repository](#usage)
+3. [Clone the repository](#to-clone)
 4. [Conclusion](#conclusion)
 ## Overview
 
@@ -71,9 +71,9 @@ SearchShield is a sophisticated web application designed to offer a seamless ima
 - The profanity detection model is based on DistilBERT, a smaller and faster version of BERT.
 - The model is trained to detect inappropriate keywords with an F1 score exceeding 90%.
 
-## Usage
+## TO CLONE:
 
-**THIS REPO IS EASY TO RUN IF FIRST AND FOREMOST IF YOU HAVE Mongodb database setup**
+**(THIS REPO IS EASY TO RUN IF FIRST AND FOREMOST YOU HAVE Mongodb database setup)**
 Download mongodb compass, create a database
 
 ### Starting the Application
@@ -106,7 +106,7 @@ Download mongodb compass, create a database
    ```bash
     npm run dev
    ```
-                  OR
+OR
    ```bash
     node index.cjs
    ```
@@ -135,7 +135,7 @@ Ensure that you have python installed , (in my setup it was python 3.12 version)
   uvicorn main:app --reload
 ```
 
-**Voila , the setup is complete**
+**Voila! the setup is complete**
 ---
 ### Creating an Account
 1. Open the application in your browser.
