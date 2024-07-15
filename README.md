@@ -92,16 +92,18 @@ Download mongodb compass, create a database
 **for the .env file in backend directory** <br>
 - CREATE a mongoDB compass database and paste the localhost link. Example is provided in env file in the backend directory. <br>
 - JWT secret key is already embeded , u can change if you want. <br>
+
 **for the .env file in frontend directory**
+
 - A dummy api key and cx search-engine ID is provided. <br>
 - YOU can also generate your own cx search-engine id here https://programmablesearchengine.google.com/controlpanel/all .<br>
 and api key here https://developers.google.com/custom-search/v1/overview if u want :) . <br>
 
-<br>
 **for the ml directory.** <br>
-"read-only" Access token for the hugging face - DISTILLBERT model is embedded already in the codebase , so no worries.
+-"read-only" Access token for the hugging face - DISTILLBERT model is embedded already in the codebase , so no worries.
 
-**Open three instances of terminal**
+
+**Open three instances of terminal** <br> 
 **TERMINAL-1 Start the backend server**
    ```bash
     cd backend
