@@ -140,7 +140,7 @@ Ensure that you have python installed , (in my setup it was python 3.12 version)
 ```
 3. Start the uvicorn server
 ```
-  uvicorn main:app --reload
+  uvicorn app:app --reload
 ```
 
 **Voila! the setup is complete**
