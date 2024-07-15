@@ -1,5 +1,5 @@
 # SearchShield Documentation
-#### [to clone and setup .env files](#to-clone)
+### TABLE OF CONTENT
 
 1. [Overview](#overview)
 2. [Features](#features)
