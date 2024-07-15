@@ -1,7 +1,6 @@
 # SearchShield Documentation
 #### (guide to clone and setup .env files will be made soon)
-## Demo
-https://github.com/Shivam-kum-mhta/SearchShield/blob/main/2024-07-13-13-50-02.mp4
+
 
 ## Overview
 
