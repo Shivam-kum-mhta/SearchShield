@@ -13,7 +13,7 @@ const Searchpg = ({ switchh, setSwitchh, prevTab, setPrevTab, search, setSearch,
     if (term){
     try {
       console.log("term", term);
-      const response = await axios.post('http://127.0.0.1:8000/predict-profanity', { text: term }, {
+      const response = await axios.post('http://127.0.0.1:8001/predict-profanity', { text: term }, {
         headers: {
           'Content-Type': 'application/json'
         }});
