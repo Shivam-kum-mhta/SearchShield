@@ -13,7 +13,7 @@ const User = require('./database/models/User.cjs');
 const SearchHistory = require('./database/models/SearchHistory.cjs')
 
 const corsOptions = {
-  origin: 'http://localhost:5173', // Specify the frontend origin
+  origin: '*', // Specify the frontend origin
   credentials: true, // Enable credentials (cookies, etc.)
 };
 
