@@ -30,10 +30,16 @@ model = DistilBertForSequenceClassification.from_pretrained(model_path, revision
 def predict_profanity(text):
     inputs = tokenizer(text, truncation=True, padding=True, max_length=512, return_tensors="pt")
     with torch.no_grad():
+        model.to("cpu")  # Move model to CPU
         outputs = model(**inputs)
     logits = outputs.logits
     predicted_class = logits.argmax().item()
     return predicted_class
+
+# Home endpoint
+@app.get("/")
+async def home():
+    return {"message": "Welcome to the SearchShield Profanity Detection API!"}
 
 # Endpoint to predict profanity
 @app.post("/predict-profanity/")
@@ -48,6 +54,4 @@ async def predict_profanity_endpoint(input: TextInput, request: Request):
         raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
-    import uvicorn
-    logging.basicConfig(level=logging.INFO)
-    uvicorn.run(app, host="127.0.0.1", port=8001)
+    app.run()
