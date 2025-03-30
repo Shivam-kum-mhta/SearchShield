@@ -15,7 +15,7 @@ const Login = ({setLogin, email, setEmail}) => {
     e.preventDefault();
     if(isLogin) {
     try {
-      const response = await axios.post('http://localhost:3003/login', {
+      const response = await axios.post('https://searchshield-2.onrender.com/login', {
         email,
         password,
       });
@@ -37,7 +37,7 @@ const Login = ({setLogin, email, setEmail}) => {
   }
   else{
     try {
-      const response = await axios.post('http://localhost:3003/signup', {
+      const response = await axios.post('https://searchshield-2.onrender.com/signup', {
         username,
         email,
         password,

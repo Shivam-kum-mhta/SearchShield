@@ -10,7 +10,7 @@ const UserDetails = ({email}) => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.post('http://localhost:3003/user', { email});
+        const response = await axios.post('https://searchshield-2.onrender.com/user', { email});
         setUser(response.data);
       } catch (err) {
         setError('Error fetching user details');

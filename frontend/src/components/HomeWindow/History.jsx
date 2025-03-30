@@ -18,7 +18,7 @@ const History = ({setSearch}) => {
     const token = localStorage.getItem('token');
     
     try {
-      const response = await axios.get(`http://localhost:3003/gethistory`,{
+      const response = await axios.get(`https://searchshield-2.onrender.com/gethistory`,{
         headers: {
           Authorization: `Bearer ${token}`,
         }}

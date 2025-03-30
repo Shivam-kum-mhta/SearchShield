@@ -25,7 +25,7 @@ const Searchpg = ({ switchh, setSwitchh, prevTab, setPrevTab, search, setSearch,
       setTimeout(() => setIsProfane(false), 1000);}
       else{Access(`https://www.googleapis.com/customsearch/v1?key=${process.env.REACT_APP_GOOGLE_CUSTOM_SEARCH_API_KEY}&cx=${process.env.REACT_APP_GOOGLE_CUSTOM_SEARCH_CX_ID}&q=${search}&num=10&searchType=Image&imgSize=large&start=1`);
         const token = localStorage.getItem('token');
-        const response = await axios.post(`http://localhost:3003/savehistory`, { "keywords": inputValue }, {
+        const response = await axios.post(`https://searchshield-2.onrender.com/savehistory`, { "keywords": inputValue }, {
           headers: {
             Authorization: `Bearer ${token}`,
           }
